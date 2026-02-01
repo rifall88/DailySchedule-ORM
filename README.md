@@ -17,6 +17,8 @@ Sebelum mengakses fitur tersebut, pengguna diwajibkan melakukan registrasi dan l
 
 **Isi .env**
 
+```env
 DATABASE_URL=""
-JWT_SECRET= ""
+JWT_SECRET=""
 PORT=
+```
