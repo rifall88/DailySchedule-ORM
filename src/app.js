@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", userRoutes);
 app.use("/api/schedules", scheduleRoutes);
 
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("Welcome to the Daily Schedule API!");
 });
 

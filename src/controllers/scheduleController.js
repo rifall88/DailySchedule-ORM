@@ -1,11 +1,9 @@
 import Schedule from "../models/Schedule.js";
 
-// Buat Jadwal
 export const createSchedule = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    // Ambil data lain dari body request
     const { title, description, date, time } = req.body;
 
     const newSchedule = await Schedule.create({
@@ -24,7 +22,6 @@ export const createSchedule = async (req, res) => {
   }
 };
 
-// Dapatkan semua jadwal
 export const getAllSchedules = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -36,7 +33,6 @@ export const getAllSchedules = async (req, res) => {
   }
 };
 
-// Dapatkan jadwal berdasarkan ID
 export const getScheduleById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -49,10 +45,9 @@ export const getScheduleById = async (req, res) => {
   } catch (error) {
     console.error("Error getting schedule by ID:", error);
     res.status(500).json({ message: "Gagal mengambil jadwal" });
-  }
+  } 
 };
 
-// Perbarui jadwal
 export const updateSchedule = async (req, res) => {
   try {
     const { id } = req.params;
@@ -67,7 +62,6 @@ export const updateSchedule = async (req, res) => {
       dataToUpdate.time = new Date(`1970-01-01T${time}:00Z`);
     }
 
-    // Panggil model Schedule.update dengan data yang sudah dikonversi
     const updatedSchedule = await Schedule.update(id, userId, dataToUpdate);
 
     if (!updatedSchedule) {
@@ -79,9 +73,9 @@ export const updateSchedule = async (req, res) => {
     });
   } catch (error) {
     console.error("Error updating schedule:", error);
-    // Lebih spesifik dalam menangani error Prisma
+
     if (error.code && error.code.startsWith("P")) {
-      // Contoh: P2025 jika record tidak ditemukan
+
       return res.status(400).json({
         message: "Kesalahan database saat memperbarui jadwal",
       });
@@ -92,7 +86,6 @@ export const updateSchedule = async (req, res) => {
   }
 };
 
-// Hapus jadwal
 export const deleteSchedule = async (req, res) => {
   try {
     const { id } = req.params;

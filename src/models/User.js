@@ -15,6 +15,20 @@ class User {
       where: { email },
     });
   }
+
+  static async findById(id) {
+    return prisma.user.findMany({
+      where: { id: parseInt(id) },
+      select: { id: true, name: true, email: true, created_at: true },
+    });
+  }
+
+  static async update(id, userData) {
+    return prisma.user.update({
+      where: { id: parseInt(id) },
+      data: userData,
+    });
+  }
 }
 
 export default User;

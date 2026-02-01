@@ -25,7 +25,7 @@ export const validateRegister = (req, res, next) => {
     }),
   });
 
-  const { error } = schema.validate(req.body, { abortEarly: false });
+  const { error } = schema.validate(req.body, { abortEarly: false }); //digunakan untuk mengumpulkan semua kesalahan validasi
 
   if (error) {
     // Jika adrequiredvalidasi, kirim respons 400 dengan pesan error

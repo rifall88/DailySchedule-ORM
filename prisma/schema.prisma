@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -14,7 +14,7 @@ model User {
   email      String?    @unique @db.VarChar(100)
   password   String?    @db.VarChar(255)
   created_at DateTime?  @default(now()) @db.Timestamp(0) @map("created_at")
-  schedules  Schedule[] // Perbaiki nama relasi balik di User menjadi plural dan lowercase
+  schedules  Schedule[]
   @@map("users")
 }
 
@@ -26,7 +26,7 @@ model Schedule {
   date                  DateTime? @db.Date
   time                  DateTime? @db.Time(0)
   created_at            DateTime? @default(now()) @db.Timestamp(0) @map("created_at")
-  User                 User?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User                  User?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   @@index([user_id])
   @@map("schedules")
 }

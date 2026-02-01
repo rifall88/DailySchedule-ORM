@@ -12,7 +12,6 @@ class Schedule {
   static async findAll(userId) {
     return prisma.schedule.findMany({
       where: { user_id: userId },
-      include: { User: true },
       orderBy: [{ date: "asc" }, { time: "asc" }],
     });
   }
@@ -21,7 +20,6 @@ class Schedule {
   static async findById(id, userId) {
     return prisma.schedule.findFirst({
       where: { id: parseInt(id), user_id: userId },
-      include: { User: true },
     });
   }
 

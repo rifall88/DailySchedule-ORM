@@ -46,7 +46,7 @@ export const login = async (req, res) => {
     const token = jwt.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "1h" },
     );
     res.status(200).json({
       status: true,
@@ -59,7 +59,21 @@ export const login = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Login error:", error);
+    console.error("Login error: ", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const getUserById = async (req, res) => {
+  const id = req.user.id;
+  try {
+    const userData = await User.findById(id);
+    if (!userData) {
+      return res.status(404).json({ message: "User tidak ditemukan" });
+    }
+    res.status(200).json(userData);
+  } catch (error) {
+    console.error("error getting user: ", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
