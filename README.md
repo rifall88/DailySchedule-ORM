@@ -11,8 +11,10 @@ Sebelum mengakses fitur tersebut, pengguna diwajibkan melakukan registrasi dan l
    (pastikan Node.js dan npm sudah terpasang).
 3. Buat file .env di root project.
 4. Lakukan migrasi database dengan masuk ke folder prisma, lalu jalankan:
-   ● npx prisma generate
-   ● npx prisma migrate dev
+   ```bash
+   npx prisma generate
+   npx prisma migrate dev
+   ```
 5. Jalankan project dengan perintah npm start.
 
 **Isi .env**
