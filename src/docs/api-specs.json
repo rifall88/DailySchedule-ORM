@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RentTech API",
+    "title": "DailySchedule API",
     "version": "1.0.0",
-    "description": "Dokumentasi API website RentTech."
+    "description": "Dokumentasi API website DailySchedule."
   },
   "servers": [
     {
